@@ -18,7 +18,7 @@ while True:
             elif opc==2:
                 visua_pedidos()
             elif opc==3:
-                print("Editar Pedido")
+                edit_ped()
             elif opc==4:
                 elimi_pedido()
             elif opc==5:

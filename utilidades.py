@@ -205,3 +205,42 @@ def visua_inv():
         print("--------------------------------------------------")
         for j in productos[i]:
             print(j,"-",productos[i][j])
+
+def edit_ped():
+    
+    while True:  
+        while True:
+            print("Digite el codigo del pedido que desea editar")
+            codped=input("CPE-")
+            if codped.isdigit(): 
+                codped = f"CPE-{codped}"  
+                break
+            else:
+                print("Ingrese solo numeros.")
+
+        eva=pedidos.get(codped)
+        if eva==None:
+            print("Codigo de pedido inexistente, digite uno nuevo")
+        else:
+            break
+    print("--------------------------------------------------")
+    print("A continuación se visualiza la información del pedido")
+    print("--------------------------------------------------")
+    for j in pedidos[codped]:
+            print(j,"-",pedidos[codped][j])
+
+    while True:
+            print("--------------------------------------------------")
+            print("1. Cambiar de producto\n2. Camnbiar la cantidad\n3. Cancelar")
+            print("--------------------------------------------------")
+            opc=int(input("Digite de acuerdo a su elección: "))
+            print("--------------------------------------------------")
+            if opc==1:
+                print("Change product")
+            elif opc==2:
+                print("Chance cant")
+            elif opc==3:
+                break
+            else:
+                print("")
+                print("Opciòn invalida, intente nuevamente")
