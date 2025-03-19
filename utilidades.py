@@ -114,5 +114,17 @@ def ag_pedido():
             print("ALERTA: SOLO RESTAN 5 UNIDADES DE",productos[codpro]["Nombre"])
             print("--------------------------------------------------")
         print("Pedido Registrado con Exito")
-        print(pedidos)
+        print("--------------------------------------------------")
         break
+
+def visua_pedidos():
+    
+    for i,j in pedidos.items():
+        print("--------------------------------------------------")
+        print("Pedido-->",i)
+        print("--------------------------------------------------")
+        for j in pedidos[i]:
+            print(j,"-",pedidos[i][j])
+
+
+    

@@ -16,7 +16,7 @@ while True:
             if opc==1:
                 ag_pedido()
             elif opc==2:
-                print(pedidos)
+                visua_pedidos()
             elif opc==3:
                 print("Editar Pedido")
             elif opc==4:
