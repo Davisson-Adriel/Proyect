@@ -236,7 +236,34 @@ def edit_ped():
             opc=int(input("Digite de acuerdo a su elección: "))
             print("--------------------------------------------------")
             if opc==1:
-                print("Change product")
+                
+                while True:
+                    codpro2=input("Digite el codigo del nuevo producto: ")
+                    eva=productos.get(codpro2,1)
+                    if eva==1:
+                        print("Codigo de producto inexistente, intente nuevamente")
+                    else:
+                        
+                        if productos[codpro2]["Cantidad en Stock"] <= 0:
+                            print("Producto agotado, no se puede hacer la edición")
+                            print("--------------------------------------------------")
+                            break
+                        else:
+                            while True:
+                                cant=int(input("Digite la cantidad a solicitar: "))
+                                if ((productos[codpro2]["Cantidad en Stock"])-cant)<0:
+                                    print("Imposible solicitar dicha cantidad, digite una nueva")
+                                else: 
+                                    productos[codpro2]["Cantidad en Stock"]=productos[codpro2]["Cantidad en Stock"]-cant
+                                    break
+                        break
+                
+
+                print("Cambiar producto")
+
+
+
+
             elif opc==2:
                 print("Chance cant")
             elif opc==3:
