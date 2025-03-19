@@ -8,7 +8,7 @@ while True:
     opc=pedir_opc()
 
     if opc==1:
-        print("")
+        ag_producto()
     elif opc==2:
         print("")
     elif opc==3:
