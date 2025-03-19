@@ -26,7 +26,17 @@ def ag_producto():
     print("--------------------------------------------------")
     print("Registro de nuevo producto")
     print("--------------------------------------------------")
-    cod=input("Codigo del producto: ")
+    
+
+    while True:
+        print("Digite el codigo del producto")
+        cod=input("CP-")
+        if cod.isdigit():  
+            cod = f"CP-{cod}" 
+            break
+        else:
+            print("Ingrese solo numeros.")
+    
     eva=productos.get(cod,1)
     if eva==1:
         nom=input("Nombre del Producto: ")
@@ -34,7 +44,7 @@ def ag_producto():
             print("--------------------------------------------------")
             print("1. Pan\n2. Pastel\n3. Postre ")
             print("--------------------------------------------------")
-            opc=int(input("Seleccione la categoria del producto"))
+            opc=int(input("Seleccione la categoria del producto: "))
             if opc==1:
                 cat="Pan"
                 break
@@ -55,6 +65,10 @@ def ag_producto():
         prepro=float(input("Precio de Proovedor: "))
         codigo={"Nombre":nom,"Categoria":cat,"Descripcion":des,"Proovedor":pro,"Cantidad en Stock":cantstock,"Precio de venta":preventa,"Precio de Proovedor":prepro}
         productos[cod]=codigo
+        print("--------------------------------------------------")
+        print("PRODUCTO AGREGADO CON EXITO")
+        print("--------------------------------------------------")
+        print(productos)
     else:
         print("--------------------------------------------------")
         print("Codigo de producto ya existente")
@@ -64,7 +78,32 @@ def ag_pedido():
     print("--------------------------------------------------")
     print("Registro de nuevo pedido")
     print("--------------------------------------------------")
-    codcliente=input("Digite el codigo del cliente: ")
+    
+    while True:
+        print("Digite el codigo del cliente")
+        codcliente=input("CC-")
+        if codcliente.isdigit():  
+            codcliente = f"CC-{codcliente}"  
+            break
+        else:
+            print("Ingrese solo numeros.")
+    
+    while True:  
+        while True:
+            print("Digite el codigo del pedido")
+            codped=input("CPE-")
+            if codped.isdigit(): 
+                codped = f"CPE-{codped}"  
+                break
+            else:
+                print("Ingrese solo numeros.")
+
+        eva=pedidos.get(codped)
+        if eva!=None:
+            print("Codigo de pedido existente, digite uno nuevo")
+        else:
+            break
+
     dia=int(input("Digite el dia (numerico): "))
     dia=str(dia)
     mes=int(input("Digite el mes (numerico): "))
@@ -73,14 +112,6 @@ def ag_pedido():
     año=str(año)
     fecha=str(año+"/"+mes+"/"+dia)
     
-    while True:
-        codped=input("Digite el codigo del pedido: ")
-        eva=pedidos.get(codped)
-        if eva!=None:
-            print("Codigo de pedido existente, digite uno nuevo")
-        else:
-            break
-
     while True:
         while True:
             codpro=input("Digite el codigo del producto a solicitar: ")
@@ -106,12 +137,12 @@ def ag_pedido():
         
         
         detalles={"Codigo de pedido":codped,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
-        det_pedido[detalles["Codigo de pedido"]]=detalles
-        ped={"Codigo de pedido":detalles["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido}
+        det_pedido[codped]=detalles
+        ped={"Codigo de pedido":detalles["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido[codped]}
         pedidos[ped["Codigo de pedido"]]=ped
         if productos[codpro]["Cantidad en Stock"]<5:
             print("--------------------------------------------------")
-            print("ALERTA: SOLO RESTAN 5 UNIDADES DE",productos[codpro]["Nombre"])
+            print("ALERTA: SOLO RESTAN ", productos[codpro]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro]["Nombre"])
             print("--------------------------------------------------")
         print("Pedido Registrado con Exito")
         print("--------------------------------------------------")
@@ -119,7 +150,7 @@ def ag_pedido():
 
 def visua_pedidos():
     
-    for i,j in pedidos.items():
+    for i in pedidos:
         print("--------------------------------------------------")
         print("Pedido-->",i)
         print("--------------------------------------------------")
