@@ -27,7 +27,18 @@ while True:
                 print("")
                 print("Opciòn invalida, intente nuevamente")
     elif opc==3:
-        print("")
+        while True:
+            menu_consultas()
+            opc=pedir_opc()
+            if opc==1:
+                print("Buscar")
+            elif opc==2:
+                visua_inv()
+            elif opc==3:
+                break
+            else:
+                print("")
+                print("Opciòn invalida, intente nuevamente")
     elif opc==4:
         print("")
         print("Hasta luego querido usuario")

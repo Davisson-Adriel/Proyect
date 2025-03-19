@@ -9,6 +9,13 @@ def mostrar_menu():
     print(" ")
     print("--------------------------------------------------")
 
+def menu_consultas():
+    print("--------------------------------------------------")
+    print(" ")
+    print("1. Buscar Productos\n2. Mirar Inventario\n3. Salir")
+    print(" ")
+    print("--------------------------------------------------")
+
 def menu_pedidos():
     print("--------------------------------------------------")
     print(" ")
@@ -189,3 +196,12 @@ def elimi_pedido():
         else:
             print("--------------------------------------------------")
             print("Opciòn invalida, vuelva a digitar")
+
+def visua_inv():
+    
+    for i in productos:
+        print("--------------------------------------------------")
+        print("Codigo de Producto-->",i)
+        print("--------------------------------------------------")
+        for j in productos[i]:
+            print(j,"-",productos[i][j])
