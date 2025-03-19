@@ -1,13 +1,19 @@
 productos={'PH': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ', 'Proovedor': 'EWEWEW', 'Cantidad en Stock': 30, 'Precio de venta': 3.0, 'Precio de Proovedor': 4.0}}
 pedidos={}
 det_pedido={}
-global count
 
 
 def mostrar_menu():
     print("--------------------------------------------------")
     print(" ")
     print("1. Registro de productos\n2. Pedidos\n3. Consultas\n4. Salir")
+    print(" ")
+    print("--------------------------------------------------")
+
+def menu_pedidos():
+    print("--------------------------------------------------")
+    print(" ")
+    print("1. Registrar nuevo pedido\n2. Visualizar Pedidos\n3. Editar Pedido\n4. Salir")
     print(" ")
     print("--------------------------------------------------")
 
@@ -54,7 +60,7 @@ def ag_producto():
         print("Codigo de producto ya existente")
 
 def ag_pedido():
-    count=0
+    
     print("--------------------------------------------------")
     print("Registro de nuevo pedido")
     print("--------------------------------------------------")
@@ -66,6 +72,15 @@ def ag_pedido():
     año=int(input("Digite el año: "))
     año=str(año)
     fecha=str(año+"/"+mes+"/"+dia)
+    
+    while True:
+        codped=input("Digite el codigo del pedido: ")
+        eva=pedidos.get(codped)
+        if eva!=None:
+            print("Codigo de pedido existente, digite uno nuevo")
+        else:
+            break
+
     while True:
         while True:
             codpro=input("Digite el codigo del producto a solicitar: ")
@@ -88,8 +103,12 @@ def ag_pedido():
                             productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
                             break
                 break
-        det_pedido={"Codigo de pedido":count+1,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
-        pedidos={"Codigo de pedido":det_pedido["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido}
+        
+        
+        detalles={"Codigo de pedido":codped,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
+        det_pedido[detalles["Codigo de pedido"]]=detalles
+        ped={"Codigo de pedido":detalles["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido}
+        pedidos[ped["Codigo de pedido"]]=ped
         if productos[codpro]["Cantidad en Stock"]<5:
             print("--------------------------------------------------")
             print("ALERTA: SOLO RESTAN 5 UNIDADES DE",productos[codpro]["Nombre"])
