@@ -10,7 +10,20 @@ while True:
     if opc==1:
         ag_producto()
     elif opc==2:
-        ag_pedido()
+        while True:
+            menu_pedidos()
+            opc=pedir_opc()
+            if opc==1:
+                ag_pedido()
+            elif opc==2:
+                print(pedidos)
+            elif opc==3:
+                print("Editar Pedido")
+            elif opc==4:
+                break
+            else:
+                print("")
+                print("Opciòn invalida, intente nuevamente")
     elif opc==3:
         print("")
     elif opc==4:
