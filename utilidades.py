@@ -67,25 +67,33 @@ def ag_pedido():
     año=str(año)
     fecha=str(año+"/"+mes+"/"+dia)
     while True:
-        codpro=input("Digite el codigo del producto a solicitar: ")
-        eva=productos.get(codpro,1)
-        if eva==1:
-            print("Codigo de producto inexistente, intente nuevamente")
-        else:
-            if productos[codpro]["Cantidad en Stock"] <= 0:
-                print("Producto agotado, no se puede realizar el pedido")
-                print("--------------------------------------------------")
-                break
+        while True:
+            codpro=input("Digite el codigo del producto a solicitar: ")
+            eva=productos.get(codpro,1)
+            if eva==1:
+                print("Codigo de producto inexistente, intente nuevamente")
+                
             else:
-                while True:
-                    cant=int(input("Digite la cantidad a solicitar: "))
-                    if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
-                        print("Imposible solicitar dicha cantidad, digite una nueva")
-                    else: 
-                        productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
-                        break
+                
+                if productos[codpro]["Cantidad en Stock"] <= 0:
+                    print("Producto agotado, no se puede realizar el pedido")
+                    print("--------------------------------------------------")
+                    break
+                else:
+                    while True:
+                        cant=int(input("Digite la cantidad a solicitar: "))
+                        if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
+                            print("Imposible solicitar dicha cantidad, digite una nueva")
+                        else: 
+                            productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
+                            break
+                break
         det_pedido={"Codigo de pedido":count+1,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
         pedidos={"Codigo de pedido":det_pedido["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido}
+        if productos[codpro]["Cantidad en Stock"]<5:
+            print("--------------------------------------------------")
+            print("ALERTA: SOLO RESTAN 5 UNIDADES DE",productos[codpro]["Nombre"])
+            print("--------------------------------------------------")
+        print("Pedido Registrado con Exito")
         print(pedidos)
         break
-
