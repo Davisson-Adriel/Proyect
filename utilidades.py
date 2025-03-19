@@ -4,7 +4,7 @@ productos={'PH': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ'
 def mostrar_menu():
     print("--------------------------------------------------")
     print(" ")
-    print("1. Registro de productos\n2. Pedidos\n3. Consultas")
+    print("1. Registro de productos\n2. Pedidos\n3. Consultas\n4. Salir")
     print(" ")
     print("--------------------------------------------------")
 
