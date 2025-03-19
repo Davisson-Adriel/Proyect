@@ -20,6 +20,8 @@ while True:
             elif opc==3:
                 print("Editar Pedido")
             elif opc==4:
+                elimi_pedido()
+            elif opc==5:
                 break
             else:
                 print("")

@@ -2,7 +2,6 @@ productos={'PH': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ'
 pedidos={}
 det_pedido={}
 
-
 def mostrar_menu():
     print("--------------------------------------------------")
     print(" ")
@@ -13,7 +12,7 @@ def mostrar_menu():
 def menu_pedidos():
     print("--------------------------------------------------")
     print(" ")
-    print("1. Registrar nuevo pedido\n2. Visualizar Pedidos\n3. Editar Pedido\n4. Salir")
+    print("1. Registrar nuevo pedido\n2. Visualizar Pedidos\n3. Editar Pedido\n4. Eliminar pedido\n5. Salir")
     print(" ")
     print("--------------------------------------------------")
 
@@ -157,5 +156,36 @@ def visua_pedidos():
         for j in pedidos[i]:
             print(j,"-",pedidos[i][j])
 
+def elimi_pedido():
 
+    while True:  
+        while True:
+            print("Digite el codigo del pedido que desea eliminar")
+            codped=input("CPE-")
+            if codped.isdigit(): 
+                codped = f"CPE-{codped}"  
+                break
+            else:
+                print("Ingrese solo numeros.")
+
+        eva=pedidos.get(codped)
+        if eva==None:
+            print("Codigo de pedido inexistente, digite uno nuevo")
+        else:
+            break
     
+    while True:
+        print("--------------------------------------------------")
+        print("Esta seguro de eliminar el pedido: ",codped)
+        print("1. SI\n2. NO")
+        print("--------------------------------------------------")
+        opc=int(input("Digite el numero de acuerdo a su elección: "))
+        if opc==1:
+            pedidos.pop(codped)
+            print("Pedido Eliminado exitosamente")
+            break
+        elif opc==2:
+            break
+        else:
+            print("--------------------------------------------------")
+            print("Opciòn invalida, vuelva a digitar")
