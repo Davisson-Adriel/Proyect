@@ -10,7 +10,7 @@ while True:
     if opc==1:
         ag_producto()
     elif opc==2:
-        print("")
+        ag_pedido()
     elif opc==3:
         print("")
     elif opc==4:

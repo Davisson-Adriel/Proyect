@@ -1,4 +1,7 @@
 productos={'PH': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ', 'Proovedor': 'EWEWEW', 'Cantidad en Stock': 30, 'Precio de venta': 3.0, 'Precio de Proovedor': 4.0}}
+pedidos={}
+det_pedido={}
+global count
 
 
 def mostrar_menu():
@@ -50,4 +53,39 @@ def ag_producto():
         print("--------------------------------------------------")
         print("Codigo de producto ya existente")
 
+def ag_pedido():
+    count=0
+    print("--------------------------------------------------")
+    print("Registro de nuevo pedido")
+    print("--------------------------------------------------")
+    codcliente=input("Digite el codigo del cliente: ")
+    dia=int(input("Digite el dia (numerico): "))
+    dia=str(dia)
+    mes=int(input("Digite el mes (numerico): "))
+    mes=str(mes)
+    año=int(input("Digite el año: "))
+    año=str(año)
+    fecha=str(año+"/"+mes+"/"+dia)
+    while True:
+        codpro=input("Digite el codigo del producto a solicitar: ")
+        eva=productos.get(codpro,1)
+        if eva==1:
+            print("Codigo de producto inexistente, intente nuevamente")
+        else:
+            if productos[codpro]["Cantidad en Stock"] <= 0:
+                print("Producto agotado, no se puede realizar el pedido")
+                print("--------------------------------------------------")
+                break
+            else:
+                while True:
+                    cant=int(input("Digite la cantidad a solicitar: "))
+                    if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
+                        print("Imposible solicitar dicha cantidad, digite una nueva")
+                    else: 
+                        productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
+                        break
+        det_pedido={"Codigo de pedido":count+1,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
+        pedidos={"Codigo de pedido":det_pedido["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido}
+        print(pedidos)
+        break
 
