@@ -31,7 +31,7 @@ while True:
             menu_consultas()
             opc=pedir_opc()
             if opc==1:
-                print("Buscar")
+                buscar()
             elif opc==2:
                 visua_inv()
             elif opc==3:
@@ -42,6 +42,7 @@ while True:
     elif opc==4:
         print("")
         print("Hasta luego querido usuario")
+        print()
         break
     else:
         print("")

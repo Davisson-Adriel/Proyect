@@ -303,3 +303,99 @@ def edit_ped():
             else:
                 print("")
                 print("Opciòn invalida, intente nuevamente")
+
+def buscar():
+
+    while True:
+
+        print("--------------------------------------------------")
+        print("1. Buscar por Nombre\n2. Buscar por Categoria\n3. Buscar por Codigo\n4. Salir")
+        print("--------------------------------------------------")
+        opc=int(input("Digite la opciòn deseada: "))
+        print("--------------------------------------------------")
+
+        if opc==1:
+            nom=input("Digite el nombre del producto: ")
+            noti=0
+            for i in productos:
+                
+                if productos[i]["Nombre"]==nom:
+                    noti=2
+                    print("--------------------------------------------------")
+                    print("Codigo de Producto-->",i)
+                    print("--------------------------------------------------")
+                    for j in productos[i]:
+                        print(j,"-",productos[i][j])
+
+            if noti!=2:
+                print("--------------------------------------------------")
+                print("Producto No existe")
+                print("--------------------------------------------------")
+
+        elif opc==2:
+            
+            noti=0
+            while True:
+                print("--------------------------------------------------")
+                print("1. Pan\n2. Pastel\n3. Postre ")
+                print("--------------------------------------------------")
+                opc=int(input("Seleccione la categoria del producto: "))
+                
+                if opc==1:
+                    nom="Pan"
+                    break
+                elif opc==2:
+                    nom="Pastel"
+                    break
+                elif opc==3:
+                    nom="Postre"
+                    break
+                else:
+                    print("--------------------------------------------------")
+                    print("Opciòn invalida, vuelva a digitar")
+
+            for i in productos:
+                    
+                if productos[i]["Categoria"]==nom:
+                    noti=2
+                    print("--------------------------------------------------")
+                    print("Codigo de Producto-->",i)
+                    print("--------------------------------------------------")
+                    for j in productos[i]:
+                        print(j,"-",productos[i][j])
+
+            if noti!=2:
+                print("--------------------------------------------------")
+                print("No hay productos de esta categoria")
+                print("--------------------------------------------------")
+
+
+        elif opc==3:
+            
+            while True:
+                print("Digite el codigo del producto")
+                nom=input("CP-")
+                if nom.isdigit():  
+                    nom = f"CP-{nom}" 
+                    break
+                else:
+                    print("Ingrese solo numeros.")
+            
+            eva=productos.get(nom,1)
+            
+            if nom==1:
+                print("Producto no existe")
+            else:
+                    print("--------------------------------------------------")
+                    print("Codigo de Producto-->",nom)
+                    print("--------------------------------------------------")
+                    for i in productos[nom]:
+                        print(i,"-",productos[nom][i])
+
+
+        elif opc==4:
+            break
+        else:
+            print("--------------------------------------------------")
+            print("Opción invalida vuelva a intentar")
+            print("--------------------------------------------------")
