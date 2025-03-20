@@ -238,8 +238,16 @@ def edit_ped():
             if opc==1:
                 
                 while True:
+                    
+                    while True:
+                        print("Digite el codigo del nuevo producto")
+                        codpro2=input("CP-")
+                        if codpro2.isdigit():  
+                            codpro2 = f"CP-{codpro2}" 
+                            break
+                        else:
+                            print("Ingrese solo numeros.")
 
-                    codpro2=input("Digite el codigo del nuevo producto: ")
                     eva=productos.get(codpro2,1)
                     if eva==1:
                         print("Codigo de producto inexistente, intente nuevamente")
