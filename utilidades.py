@@ -47,23 +47,28 @@ def ag_producto():
     if eva==1:
         nom=input("Nombre del Producto: ")
         while True:
-            print("--------------------------------------------------")
-            print("1. Pan\n2. Pastel\n3. Postre ")
-            print("--------------------------------------------------")
-            opc=int(input("Seleccione la categoria del producto: "))
-            if opc==1:
-                cat="Pan"
-                break
-            elif opc==2:
-                cat="Pastel"
-                break
-            elif opc==3:
-                cat="Postre"
-                break
-            else:
+            
+            try:
                 print("--------------------------------------------------")
-                print("Opciòn invalida, vuelva a digitar")
-        
+                print("1. Pan\n2. Pastel\n3. Postre ")
+                print("--------------------------------------------------")
+                opc=int(input("Seleccione la categoria del producto: "))
+                if opc==1:
+                    cat="Pan"
+                    break
+                elif opc==2:
+                    cat="Pastel"
+                    break
+                elif opc==3:
+                    cat="Postre"
+                    break
+                else:
+                    print("--------------------------------------------------")
+                    print("Opciòn invalida, vuelva a digitar")
+            except ValueError:
+                print("")
+                print("Opciòn invalida (SOLO NUMEROS)")
+
         des=input("Descripción del producto: ")
         pro=input("Proovedor: ")
         cantstock=int(input("Cantidad en Stock: "))
@@ -383,15 +388,14 @@ def buscar():
             
             eva=productos.get(nom,1)
             
-            if nom==1:
+            if eva==1:
                 print("Producto no existe")
             else:
-                    print("--------------------------------------------------")
-                    print("Codigo de Producto-->",nom)
-                    print("--------------------------------------------------")
-                    for i in productos[nom]:
-                        print(i,"-",productos[nom][i])
-
+                print("--------------------------------------------------")
+                print("Codigo de Producto-->",nom)
+                print("--------------------------------------------------")
+                for i in productos[nom]:
+                    print(i,"-",productos[nom][i])
 
         elif opc==4:
             break
