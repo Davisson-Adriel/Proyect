@@ -196,17 +196,48 @@ def ag_pedido():
             print("Opciòn invalida (SOLO NUMEROS Y ENTEROS)")
             print("--------------------------------------------------")
 
+    while True:
+        try:
+            mes=int(input("Digite el mes (numerico): "))
+            if mes>0 and mes<=12:
+                mes=str(mes)
+                break
+            else:
+                print("Mes no valido")
+        except ValueError:
+            print("--------------------------------------------------")
+            print("Opciòn invalida (SOLO NUMEROS Y ENTEROS)")
+            print("--------------------------------------------------")
     
-    mes=int(input("Digite el mes (numerico): "))
-    mes=str(mes)
-    año=int(input("Digite el año: "))
-    año=str(año)
+    while True:
+        try:
+            año=int(input("Digite el año: "))
+            if año>=2025:
+                año=str(año)
+                break
+            else:
+                print("Año no valido")
+        except ValueError:
+            print("--------------------------------------------------")
+            print("Opciòn invalida (SOLO NUMEROS Y ENTEROS)")
+            print("--------------------------------------------------")
+    
     fecha=str(año+"/"+mes+"/"+dia)
     
     while True:
         while True:
-            codpro=input("Digite el codigo del producto a solicitar: ")
+
+            while True:
+                print("Digite el codigo del producto que solicita")
+                codpro=input("CP-")
+                if codpro.isdigit():  
+                    codpro = f"CP-{codpro}" 
+                    break
+                else:
+                    print("Ingrese solo numeros")
+
             eva=productos.get(codpro,1)
+
             if eva==1:
                 print("Codigo de producto inexistente, intente nuevamente")
                 
@@ -218,7 +249,22 @@ def ag_pedido():
                     break
                 else:
                     while True:
-                        cant=int(input("Digite la cantidad a solicitar: "))
+                        
+                        while True:
+                            try:
+                                cant=int(input("Digite la cantidad a solicitar: "))
+                                if cant>0:
+                                    break
+                                else:
+                                    print("--------------------------------------------------")
+                                    print("Valor Invalido, intente nuevamente")
+                                    print("--------------------------------------------------")
+
+                            except ValueError:
+                                print("--------------------------------------------------")
+                                print("Opciòn invalida (SOLO NUMEROS)")
+                                print("--------------------------------------------------")
+
                         if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
                             print("Imposible solicitar dicha cantidad, digite una nueva")
                         else: 
@@ -336,7 +382,7 @@ def edit_ped():
                             codpro2 = f"CP-{codpro2}" 
                             break
                         else:
-                            print("Ingrese solo numeros.")
+                            print("Ingrese solo numeros")
 
                     eva=productos.get(codpro2,1)
                     if eva==1:
@@ -349,21 +395,38 @@ def edit_ped():
                             break
                         else:
                             while True:
-                                cant=int(input("Digite la cantidad a solicitar: "))
-                                if ((productos[codpro2]["Cantidad en Stock"])-cant)<0:
-                                    print("Imposible solicitar dicha cantidad, digite una nueva")
-                                else: 
-                                    productos[codpro2]["Cantidad en Stock"]=(productos[codpro2]["Cantidad en Stock"])-cant
-                                    break
-                        break
-                
+                                try:
+                                    cant=int(input("Digite la cantidad a solicitar: "))
+                                    if cant>0:
+                                        break
+                                    else:
+                                        print("--------------------------------------------------")
+                                        print("Valor Invalido, intente nuevamente")
+                                        print("--------------------------------------------------")
 
+                                except ValueError:
+                                    print("--------------------------------------------------")
+                                    print("Opciòn invalida (SOLO NUMEROS)")
+                                    print("--------------------------------------------------")
+
+                            if ((productos[codpro2]["Cantidad en Stock"])-cant)<0:
+                                print("Imposible solicitar dicha cantidad, digite una nueva")
+                            else: 
+                                productos[codpro2]["Cantidad en Stock"]=(productos[codpro2]["Cantidad en Stock"])-cant
+                                break
+                
                 cant2=pedidos[codped]["Detalles del pedido"]["Cantidad"]
                 productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])+cant2
                 pedidos[codped]["Detalles del pedido"]["Codigo de producto"]=codpro2
                 pedidos[codped]["Detalles del pedido"]["Cantidad"]=cant
                 pedidos[codped]["Detalles del pedido"]["Precio Unidad"]=productos[codpro2]["Precio de venta"]
                 
+
+                if productos[codpro2]["Cantidad en Stock"]<5:
+                    print("--------------------------------------------------")
+                    print("ALERTA: SOLO RESTAN ", productos[codpro2]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro2]["Nombre"])
+                    print("--------------------------------------------------")
+
                 print("--------------------------------------------------")
                 print("Edición realizada con exito")
                 print("--------------------------------------------------")
@@ -375,14 +438,36 @@ def edit_ped():
                 productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])+cant2
 
                 while True:
-                    cant=int(input("Digite la nueva cantidad a solicitar: "))
+                    while True:
+                        try:
+                            cant=int(input("Digite la cantidad a solicitar: "))
+                            if cant>0:
+                                break
+                            else:
+                                print("--------------------------------------------------")
+                                print("Valor Invalido, intente nuevamente")
+                                print("--------------------------------------------------")
+
+                        except ValueError:
+                            print("--------------------------------------------------")
+                            print("Opciòn invalida (SOLO NUMEROS)")
+                            print("--------------------------------------------------")
+                    
                     if ((productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])-cant)<0:
                         print("Imposible solicitar dicha cantidad, digite una nueva")
                     else: 
                         productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])-cant
                         break
                 
+
                 pedidos[codped]["Detalles del pedido"]["Cantidad"]=cant
+                codcod=pedidos[codped]["Detalles del pedido"]["Codigo de producto"]
+                
+                if productos[codcod]["Cantidad en Stock"]<5:
+                    print("--------------------------------------------------")
+                    print("ALERTA: SOLO RESTAN ", productos[codcod]["Cantidad en Stock"] ," UNIDADES DE",productos[codcod]["Nombre"])
+                    print("--------------------------------------------------")
+
                 print("--------------------------------------------------")
                 print("Edición realizada con exito")
                 print("--------------------------------------------------")
