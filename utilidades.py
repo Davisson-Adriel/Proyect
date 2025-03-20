@@ -41,7 +41,9 @@ def ag_producto():
             cod = f"CP-{cod}" 
             break
         else:
-            print("Ingrese solo numeros.")
+            print("--------------------------------------------------")
+            print("Ingrese solo numeros")
+            print("--------------------------------------------------")
     
     eva=productos.get(cod,1)
     if eva==1:
@@ -150,13 +152,18 @@ def ag_pedido():
     print("--------------------------------------------------")
     
     while True:
-        print("Digite el codigo del cliente")
+        print("Digite el codigo (cedula) del cliente")
         codcliente=input("CC-")
-        if codcliente.isdigit():  
-            codcliente = f"CC-{codcliente}"  
-            break
+        if codcliente.isdigit():
+            if len(codcliente)==10:
+                codcliente = f"CC-{codcliente}"
+                break
+            else:
+                print("Cedula no Valida")
         else:
-            print("Ingrese solo numeros.")
+            print("--------------------------------------------------")
+            print("Ingrese solo numeros")
+            print("--------------------------------------------------")
     
     while True:  
         while True:
@@ -166,7 +173,9 @@ def ag_pedido():
                 codped = f"CPE-{codped}"  
                 break
             else:
-                print("Ingrese solo numeros.")
+                print("--------------------------------------------------")
+                print("Ingrese solo numeros")
+                print("--------------------------------------------------")
 
         eva=pedidos.get(codped)
         if eva!=None:
@@ -174,8 +183,20 @@ def ag_pedido():
         else:
             break
 
-    dia=int(input("Digite el dia (numerico): "))
-    dia=str(dia)
+    while True:
+        try:
+            dia=int(input("Digite el dia (numerico): "))
+            if dia>0 and dia<=30:
+                dia=str(dia)
+                break
+            else:
+                print("Dia no valido")
+        except ValueError:
+            print("--------------------------------------------------")
+            print("Opciòn invalida (SOLO NUMEROS Y ENTEROS)")
+            print("--------------------------------------------------")
+
+    
     mes=int(input("Digite el mes (numerico): "))
     mes=str(mes)
     año=int(input("Digite el año: "))
