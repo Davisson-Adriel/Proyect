@@ -92,7 +92,13 @@ def ag_producto():
         while True:
             try:
                 cantstock=int(input("Cantidad en Stock: "))
-                break
+                if cantstock>0:
+                    break
+                else:
+                    print("--------------------------------------------------")
+                    print("Valor Invalido, intente nuevamente")
+                    print("--------------------------------------------------")
+
             except ValueError:
                 print("--------------------------------------------------")
                 print("Opciòn invalida (SOLO NUMEROS)")
@@ -101,7 +107,12 @@ def ag_producto():
         while True:
             try:
                 preventa=float(input("Precio de Venta: "))
-                break
+                if preventa>0:
+                    break
+                else:
+                    print("--------------------------------------------------")
+                    print("Valor Invalido, intente nuevamente")
+                    print("--------------------------------------------------")
             except ValueError:
                 print("--------------------------------------------------")
                 print("Opciòn invalida (SOLO NUMEROS)")
@@ -110,7 +121,12 @@ def ag_producto():
         while True:
             try:
                 prepro=float(input("Precio de Proovedor: "))
-                break
+                if prepro>0:
+                    break
+                else:
+                    print("--------------------------------------------------")
+                    print("Valor Invalido, intente nuevamente")
+                    print("--------------------------------------------------")
             except ValueError:
                 print("--------------------------------------------------")
                 print("Opciòn invalida (SOLO NUMEROS)")
