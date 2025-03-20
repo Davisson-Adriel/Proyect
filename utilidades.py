@@ -231,13 +231,14 @@ def edit_ped():
 
     while True:
             print("--------------------------------------------------")
-            print("1. Cambiar de producto\n2. Camnbiar la cantidad\n3. Cancelar")
+            print("1. Cambiar de producto\n2. Cambiar la cantidad\n3. Cancelar")
             print("--------------------------------------------------")
             opc=int(input("Digite de acuerdo a su elección: "))
             print("--------------------------------------------------")
             if opc==1:
                 
                 while True:
+
                     codpro2=input("Digite el codigo del nuevo producto: ")
                     eva=productos.get(codpro2,1)
                     if eva==1:
@@ -254,18 +255,41 @@ def edit_ped():
                                 if ((productos[codpro2]["Cantidad en Stock"])-cant)<0:
                                     print("Imposible solicitar dicha cantidad, digite una nueva")
                                 else: 
-                                    productos[codpro2]["Cantidad en Stock"]=productos[codpro2]["Cantidad en Stock"]-cant
+                                    productos[codpro2]["Cantidad en Stock"]=(productos[codpro2]["Cantidad en Stock"])-cant
                                     break
                         break
                 
 
-                print("Cambiar producto")
-
-
-
+                cant2=pedidos[codped]["Detalles del pedido"]["Cantidad"]
+                productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])+cant2
+                pedidos[codped]["Detalles del pedido"]["Codigo de producto"]=codpro2
+                pedidos[codped]["Detalles del pedido"]["Cantidad"]=cant
+                pedidos[codped]["Detalles del pedido"]["Precio Unidad"]=productos[codpro2]["Precio de venta"]
+                
+                print("--------------------------------------------------")
+                print("Edición realizada con exito")
+                print("--------------------------------------------------")
+                break
 
             elif opc==2:
-                print("Chance cant")
+                
+                cant2=pedidos[codped]["Detalles del pedido"]["Cantidad"]
+                productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])+cant2
+
+                while True:
+                    cant=int(input("Digite la nueva cantidad a solicitar: "))
+                    if ((productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])-cant)<0:
+                        print("Imposible solicitar dicha cantidad, digite una nueva")
+                    else: 
+                        productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"]["Codigo de producto"]]["Cantidad en Stock"])-cant
+                        break
+                
+                pedidos[codped]["Detalles del pedido"]["Cantidad"]=cant
+                print("--------------------------------------------------")
+                print("Edición realizada con exito")
+                print("--------------------------------------------------")
+                break
+
             elif opc==3:
                 break
             else:
