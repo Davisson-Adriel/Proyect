@@ -480,8 +480,9 @@ def edit_ped():
                 print("Opciòn invalida, intente nuevamente")
 
         except ValueError:
-            print("")
+            print("--------------------------------------------------")
             print("Opciòn invalida (SOLO NUMEROS)")
+            print("--------------------------------------------------")
 
 def buscar():
 
@@ -515,23 +516,28 @@ def buscar():
                 
                 noti=0
                 while True:
-                    print("--------------------------------------------------")
-                    print("1. Pan\n2. Pastel\n3. Postre ")
-                    print("--------------------------------------------------")
-                    opc=int(input("Seleccione la categoria del producto: "))
-                    
-                    if opc==1:
-                        nom="Pan"
-                        break
-                    elif opc==2:
-                        nom="Pastel"
-                        break
-                    elif opc==3:
-                        nom="Postre"
-                        break
-                    else:
+                    try:
                         print("--------------------------------------------------")
-                        print("Opciòn invalida, vuelva a digitar")
+                        print("1. Pan\n2. Pastel\n3. Postre ")
+                        print("--------------------------------------------------")
+                        opc=int(input("Seleccione la categoria del producto: "))
+                        
+                        if opc==1:
+                            nom="Pan"
+                            break
+                        elif opc==2:
+                            nom="Pastel"
+                            break
+                        elif opc==3:
+                            nom="Postre"
+                            break
+                        else:
+                            print("--------------------------------------------------")
+                            print("Opciòn invalida, vuelva a digitar")
+                    except ValueError:
+                        print("--------------------------------------------------")
+                        print("Opciòn invalida (SOLO NUMEROS)")
+                        print("--------------------------------------------------")
 
                 for i in productos:
                         
@@ -579,5 +585,6 @@ def buscar():
                 print("--------------------------------------------------")
         
         except ValueError:
-            print("")
+            print("--------------------------------------------------")
             print("Opciòn invalida (SOLO NUMEROS)")
+            print("--------------------------------------------------")
