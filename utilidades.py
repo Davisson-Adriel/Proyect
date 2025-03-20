@@ -45,9 +45,15 @@ def ag_producto():
     
     eva=productos.get(cod,1)
     if eva==1:
-        nom=input("Nombre del Producto: ")
+        
         while True:
-            
+            nom=input("Nombre del Producto: ")
+            if len(nom)>0:
+                break
+            else:
+                print("No se puede dejar el nombre vacio")
+        
+        while True:
             try:
                 print("--------------------------------------------------")
                 print("1. Pan\n2. Pastel\n3. Postre ")
@@ -66,14 +72,50 @@ def ag_producto():
                     print("--------------------------------------------------")
                     print("Opciòn invalida, vuelva a digitar")
             except ValueError:
-                print("")
+                print("--------------------------------------------------")
                 print("Opciòn invalida (SOLO NUMEROS)")
 
-        des=input("Descripción del producto: ")
-        pro=input("Proovedor: ")
-        cantstock=int(input("Cantidad en Stock: "))
-        preventa=float(input("Precio de Venta: "))
-        prepro=float(input("Precio de Proovedor: "))
+        while True:
+            des=input("Descripción del producto: ")
+            if len(des)>0:
+                break
+            else:
+                print("No se puede dejar la descripción vacia")
+
+        while True:
+            pro=input("Proovedor: ")
+            if len(pro)>0:
+                break
+            else:
+                print("No se puede dejar el proovedor vacio")
+        
+        while True:
+            try:
+                cantstock=int(input("Cantidad en Stock: "))
+                break
+            except ValueError:
+                print("--------------------------------------------------")
+                print("Opciòn invalida (SOLO NUMEROS)")
+                print("--------------------------------------------------")
+
+        while True:
+            try:
+                preventa=float(input("Precio de Venta: "))
+                break
+            except ValueError:
+                print("--------------------------------------------------")
+                print("Opciòn invalida (SOLO NUMEROS)")
+                print("--------------------------------------------------")
+        
+        while True:
+            try:
+                prepro=float(input("Precio de Proovedor: "))
+                break
+            except ValueError:
+                print("--------------------------------------------------")
+                print("Opciòn invalida (SOLO NUMEROS)")
+                print("--------------------------------------------------")
+
         codigo={"Nombre":nom,"Categoria":cat,"Descripcion":des,"Proovedor":pro,"Cantidad en Stock":cantstock,"Precio de venta":preventa,"Precio de Proovedor":prepro}
         productos[cod]=codigo
         print("--------------------------------------------------")
@@ -83,6 +125,7 @@ def ag_producto():
     else:
         print("--------------------------------------------------")
         print("Codigo de producto ya existente")
+        print("--------------------------------------------------")
 
 def ag_pedido():
     
