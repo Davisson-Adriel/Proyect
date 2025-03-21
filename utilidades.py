@@ -1,4 +1,4 @@
-productos={'PH': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ', 'Proovedor': 'EWEWEW', 'Cantidad en Stock': 30, 'Precio de venta': 3.0, 'Precio de Proovedor': 4.0}}
+productos={'CP-001': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ', 'Proovedor': 'EWEWEW', 'Cantidad en Stock': 30, 'Precio de venta': 3.0, 'Precio de Proovedor': 4.0}}
 pedidos={}
 det_pedido={}
 
@@ -223,67 +223,89 @@ def ag_pedido():
             print("--------------------------------------------------")
     
     fecha=str(año+"/"+mes+"/"+dia)
-    
+    det_pedido[codped]=[]
+
     while True:
         while True:
-
             while True:
-                print("Digite el codigo del producto que solicita")
-                codpro=input("CP-")
-                if codpro.isdigit():  
-                    codpro = f"CP-{codpro}" 
-                    break
-                else:
-                    print("Ingrese solo numeros")
+                while True:
+                    print("Digite el codigo del producto que solicita")
+                    codpro=input("CP-")
+                    if codpro.isdigit():  
+                        codpro = f"CP-{codpro}" 
+                        break
+                    else:
+                        print("Ingrese solo numeros")
 
-            eva=productos.get(codpro,1)
+                eva=productos.get(codpro,1)
 
-            if eva==1:
-                print("Codigo de producto inexistente, intente nuevamente")
-                
-            else:
-                
-                if productos[codpro]["Cantidad en Stock"] <= 0:
-                    print("Producto agotado, no se puede realizar el pedido")
-                    print("--------------------------------------------------")
-                    break
+                if eva==1:
+                    print("Codigo de producto inexistente, intente nuevamente")
+                    
                 else:
-                    while True:
-                        
+                    
+                    if productos[codpro]["Cantidad en Stock"] <= 0:
+                        print("Producto agotado, no se puede realizar el pedido")
+                        print("--------------------------------------------------")
+                        break
+                    else:
                         while True:
-                            try:
-                                cant=int(input("Digite la cantidad a solicitar: "))
-                                if cant>0:
-                                    break
-                                else:
+                            
+                            while True:
+                                try:
+                                    cant=int(input("Digite la cantidad a solicitar: "))
+                                    if cant>0:
+                                        break
+                                    else:
+                                        print("--------------------------------------------------")
+                                        print("Valor Invalido, intente nuevamente")
+                                        print("--------------------------------------------------")
+
+                                except ValueError:
                                     print("--------------------------------------------------")
-                                    print("Valor Invalido, intente nuevamente")
+                                    print("Opciòn invalida (SOLO NUMEROS)")
                                     print("--------------------------------------------------")
 
-                            except ValueError:
-                                print("--------------------------------------------------")
-                                print("Opciòn invalida (SOLO NUMEROS)")
-                                print("--------------------------------------------------")
+                            if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
+                                print("Imposible solicitar dicha cantidad, digite una nueva")
+                            else: 
+                                productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
+                                break
+            
+                detalles={"Codigo de pedido":codped,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
+                det_pedido[codped].append(detalles)
+                pedidos[codped]={"Codigo de pedido":codped,"Cosigo de Cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido[codped]}
+                if productos[codpro]["Cantidad en Stock"]<5:
+                    print("--------------------------------------------------")
+                    print("ALERTA: SOLO RESTAN ", productos[codpro]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro]["Nombre"])
+                    print("--------------------------------------------------")
 
-                        if ((productos[codpro]["Cantidad en Stock"])-cant)<0:
-                            print("Imposible solicitar dicha cantidad, digite una nueva")
-                        else: 
-                            productos[codpro]["Cantidad en Stock"]=productos[codpro]["Cantidad en Stock"]-cant
+                while True:
+                    try:
+                        print("¿Desea agregar otro producto al pedido?")
+                        print("1. SI\n2. NO")
+                        opc=int(input("Digite su elección: "))
+                        if opc==1:
+                            print("--------------------------------------------------")
+                            print("Ingrese la información del nuevo producto")
+                            print("--------------------------------------------------")
                             break
+                        elif opc==2:
+                            print("--------------------------------------------------")
+                            print("Pedido Registrado con Exito")
+                            print("--------------------------------------------------")
+                            return
+                        else:
+                            print("--------------------------------------------------")
+                            print("Opciòn invalida, vuelva a digitar")
+                            print("--------------------------------------------------")
+                    except ValueError:
+                        print("--------------------------------------------------")
+                        print("Opciòn invalida (SOLO NUMEROS)")
+                        print("--------------------------------------------------")
+                    break
                 break
-        
-        
-        detalles={"Codigo de pedido":codped,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
-        det_pedido[codped]=detalles
-        ped={"Codigo de pedido":detalles["Codigo de pedido"],"Codigo de cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido[codped]}
-        pedidos[ped["Codigo de pedido"]]=ped
-        if productos[codpro]["Cantidad en Stock"]<5:
-            print("--------------------------------------------------")
-            print("ALERTA: SOLO RESTAN ", productos[codpro]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro]["Nombre"])
-            print("--------------------------------------------------")
-        print("Pedido Registrado con Exito")
-        print("--------------------------------------------------")
-        break
+            break
 
 def visua_pedidos():
     
@@ -576,6 +598,122 @@ def buscar():
                     print("--------------------------------------------------")
                     for i in productos[nom]:
                         print(i,"-",productos[nom][i])
+
+            elif opc==4:
+                break
+            else:
+                print("--------------------------------------------------")
+                print("Opción invalida vuelva a intentar")
+                print("--------------------------------------------------")
+        
+        except ValueError:
+            print("--------------------------------------------------")
+            print("Opciòn invalida (SOLO NUMEROS)")
+            print("--------------------------------------------------")
+
+
+def buscar_pedidos():
+
+    while True:
+        try:
+            print("--------------------------------------------------")
+            print("1. Buscar por Codigo\n2. Filtrar pedidos por producto\n3. Salir")
+            print("--------------------------------------------------")
+            opc=int(input("Digite la opciòn deseada: "))
+            print("--------------------------------------------------")
+
+            if opc==1:
+                
+                while True:
+                    print("Digite el codigo del pedido")
+                    nom=input("CPE-")
+                    if nom.isdigit():  
+                        nom = f"CPE-{nom}" 
+                        break
+                    else:
+                        print("Ingrese solo numeros")
+                
+                eva=pedidos.get(nom,1)
+                
+                if eva==1:
+                    print("--------------------------------------------------")
+                    print("Pedido no existe")
+                    print("--------------------------------------------------")
+                else:
+                    print("--------------------------------------------------")
+                    print("Codigo de Pedido-->",nom)
+                    print("--------------------------------------------------")
+                    for i in pedidos[nom]:
+                        print(i,"-",pedidos[nom][i])
+
+            elif opc==2:
+                
+                noti=0
+                while True:
+                    try:
+                        print("--------------------------------------------------")
+                        print("1. Nombre de Producto\n2. Codigo de producto\n3. Cancelar")
+                        print("--------------------------------------------------")
+                        opc=int(input("Seleccione la categoria del producto: "))
+                        
+                        if opc==1:
+                            
+                            while True:
+                                nom=input("Digite el nombre del producto: ")
+                                eva=productos.get(nom)
+                                if eva==None:
+                                    print("Producto no existe, ingrese nuevamente")
+                                else:
+                                    break
+                            
+                        
+                            noti=0
+
+                            for i in pedidos:
+                                
+                                if pedidos[i]["Nombre"]==nom:
+                                    noti=2
+                                    print("--------------------------------------------------")
+                                    print("Codigo de Producto-->",i)
+                                    print("--------------------------------------------------")
+                                    for j in productos[i]:
+                                        print(j,"-",productos[i][j])
+
+                            if noti!=2:
+                                print("--------------------------------------------------")
+                                print("Producto No existe")
+                                print("--------------------------------------------------")
+
+
+                            
+                        elif opc==2:
+                            nom="Pastel"
+                            
+                        elif opc==3:
+                            break
+                        else:
+                            print("--------------------------------------------------")
+                            print("Opciòn invalida, vuelva a digitar")
+                    except ValueError:
+                        print("--------------------------------------------------")
+                        print("Opciòn invalida (SOLO NUMEROS)")
+                        print("--------------------------------------------------")
+
+                break
+                for i in productos:
+                        
+                    if productos[i]["Categoria"]==nom:
+                        noti=2
+                        print("--------------------------------------------------")
+                        print("Codigo de Producto-->",i)
+                        print("--------------------------------------------------")
+                        for j in productos[i]:
+                            print(j,"-",productos[i][j])
+
+                if noti!=2:
+                    print("--------------------------------------------------")
+                    print("No hay productos de esta categoria")
+                    print("--------------------------------------------------")
 
             elif opc==4:
                 break
