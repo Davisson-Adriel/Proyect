@@ -733,7 +733,8 @@ def buscar_pedidos():
                                             cod=i
 
                                     if noti==2:
-                                        print("Vamos bien")
+                                        print("Producto validado")
+                                        break
                                     else:
                                         print("--------------------------------------------------")
                                         print("Producto No existe, ingrese uno nuevo")
@@ -745,39 +746,49 @@ def buscar_pedidos():
                                     print("--------------------------------------------------")
 
                                 
-                                for i in pedidos:
-                                    for j in pedidos[i]:
-                                        if j=="Detalles del pedido":
-                                            for x in pedidos[i][j]:
-                                                for h in x:
-                                                    if h=="Codigo de producto":
-                                                        if x[h]==cod:
-                                                            codped=i
-                                                            noti=2
-                                                            print("--------------------------------------------------")
-                                                            print("Pedido-->",codped)
-                                                            print("--------------------------------------------------")
-                                                            for e in pedidos[codped]:
-                                                                if e=="Detalles del pedido":
+                            for i in pedidos:
+                                for j in pedidos[i]:
+                                    if j=="Detalles del pedido":
+                                        for x in pedidos[i][j]:
+                                            for h in x:
+                                                if h=="Codigo de producto":
+                                                    if x[h]==cod:
+                                                        codped=i
+                                                        noti=2
+                                                        print("--------------------------------------------------")
+                                                        print("Pedido-->",codped)
+                                                        print("--------------------------------------------------")
+                                                        for e in pedidos[codped]:
+                                                            if e=="Detalles del pedido":
+                                                                print("--------------------------------------------------")
+                                                                print("Detalles del pedido")
+                                                                for p in pedidos[codped][e]:
                                                                     print("--------------------------------------------------")
-                                                                    print("Detalles del pedido")
-                                                                    for p in pedidos[codped][e]:
-                                                                        print("--------------------------------------------------")
-                                                                        for o in p:
-                                                                            print(o,"-",p[o])
-                                                                else:
-                                                                    print(e,"-",pedidos[codped][e])
+                                                                    for o in p:
+                                                                        print(o,"-",p[o])
+                                                            else:
+                                                                print(e,"-",pedidos[codped][e])
                                                             
 
-                                    if noti!=2:
-                                        print("--------------------------------------------------")
-                                        print("No hay pedidos con dicho producto incluido")
-                                        print("--------------------------------------------------") 
+                            if noti!=2:
+                                print("--------------------------------------------------")
+                                print("No hay pedidos con dicho producto incluido")
+                                print("--------------------------------------------------") 
                                 break
+
+                        elif opc==2:
+                            print()
+
+
+
+
+                        elif opc==3:
+                            break
                     except ValueError:
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
                         print("--------------------------------------------------")
+
 
             elif opc==3:
                 break
