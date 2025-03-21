@@ -20,10 +20,12 @@ while True:
                     elif opc==2:
                         visua_pedidos()
                     elif opc==3:
-                        edit_ped()
+                        buscar_pedidos()
                     elif opc==4:
-                        elimi_pedido()
+                        edit_ped()
                     elif opc==5:
+                        elimi_pedido()
+                    elif opc==6:
                         break
                     else:
                         print("")
