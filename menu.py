@@ -1,4 +1,5 @@
 from utilidades import*
+from json2 import*
 print("--------------------------------------------------")
 print("Bienvenido a Digital Delicias Casera")
 
@@ -56,6 +57,7 @@ while True:
             print("")
             print("Hasta luego querido usuario")
             print()
+            guardar_datos() 
             break
         else:
             print("")

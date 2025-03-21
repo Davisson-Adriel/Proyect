@@ -1,4 +1,4 @@
-productos={'CP-001': {'Nombre': 'CDC', 'Categoria': 'Pastel', 'Descripcion': 'EDEWQ', 'Proovedor': 'EWEWEW', 'Cantidad en Stock': 30, 'Precio de venta': 3.0, 'Precio de Proovedor': 4.0}}
+productos={}
 pedidos={}
 det_pedido={}
 
