@@ -139,7 +139,6 @@ def ag_producto():
         print("--------------------------------------------------")
         print("PRODUCTO AGREGADO CON EXITO")
         print("--------------------------------------------------")
-        print(productos)
     else:
         print("--------------------------------------------------")
         print("Codigo de producto ya existente")
@@ -352,6 +351,7 @@ def elimi_pedido():
             if opc==1:
                 pedidos.pop(codped)
                 print("Pedido Eliminado exitosamente")
+                det_pedido.pop(codped)
                 break
             elif opc==2:
                 break
