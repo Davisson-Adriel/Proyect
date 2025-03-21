@@ -1,0 +1,11 @@
+{
+    "CP-001": {
+        "Nombre": "perro",
+        "Categoria": "Postre",
+        "Descripcion": "sada",
+        "Proovedor": "asda",
+        "Cantidad en Stock": 213,
+        "Precio de venta": 2312.0,
+        "Precio de Proovedor": 32132.0
+    }
+}

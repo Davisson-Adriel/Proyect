@@ -15,3 +15,18 @@ def guardar_datos():
     with open(productos_json,"w") as archivo2:
         json.dump(productos, archivo2, indent=4)
 
+
+def cargar_datos(archivo):
+    datos = {}
+    try:
+        with open(archivo, "r") as file:
+            datos = json.load(file)
+    except Exception:
+        print("No se pudo cargar datos....")
+        datos = None
+    if archivo == "productos.json":
+        productos.update(datos)
+    elif archivo == "pedidos.json":
+        pedidos.update(datos)
+    elif archivo == "detalle.json":
+        det_pedido.uptade(datos)

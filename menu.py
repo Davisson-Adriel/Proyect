@@ -1,5 +1,9 @@
 from utilidades import*
 from json2 import*
+
+cargar_datos("productos.json")
+cargar_datos("pedidos.json")
+cargar_datos("detalles.json")
 print("--------------------------------------------------")
 print("Bienvenido a Digital Delicias Casera")
 
