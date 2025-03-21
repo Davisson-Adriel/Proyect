@@ -301,7 +301,7 @@ def ag_pedido():
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
                         print("--------------------------------------------------")
-                    break
+                    
                 break
             break
 
@@ -420,8 +420,9 @@ def edit_ped():
                 while True:
                     try:
                         print("--------------------------------------------------")
-                        opc=int(input("Digite el numero de Solicitud que desea editar"))
+                        opc=int(input("Digite el numero de Solicitud que desea editar: "))
                         print("--------------------------------------------------")
+                        
                         
                         if 1<=opc<=len(pedidos[codped]["Detalles del pedido"]):
                             
@@ -491,7 +492,8 @@ def edit_ped():
                                         break
                                 break
                             break
-                        break
+                        else:
+                            print("Opción no valida, vuelva a intentar")
                     except ValueError:
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
@@ -509,7 +511,7 @@ def edit_ped():
                 while True:
                     try:
                         print("--------------------------------------------------")
-                        opc=int(input("Digite el numero de Solicitud que desea editar"))
+                        opc=int(input("Digite el numero de Solicitud que desea editar: "))
                         print("--------------------------------------------------")
                         
                         if 1<=opc<=len(pedidos[codped]["Detalles del pedido"]):
@@ -539,26 +541,37 @@ def edit_ped():
                                     productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"])-cant
                                     break
                                 
-                        pedidos[codped]["Detalles del pedido"][opc-1]["Cantidad"]=cant
-                        
-                        if productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]<5:
-                                print("--------------------------------------------------")
-                                print("ALERTA: SOLO RESTAN ", productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"] ," UNIDADES DE",productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Nombre"])
+                            pedidos[codped]["Detalles del pedido"][opc-1]["Cantidad"]=cant
+                            
+                            if productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]<5:
+                                    print("--------------------------------------------------")
+                                    print("ALERTA: SOLO RESTAN ", productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"] ," UNIDADES DE",productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Nombre"])
+                                    print("--------------------------------------------------")
+                                    print("Ediciòn Exitosa")
+                                    print("--------------------------------------------------")
+                                    break
+                            else:
                                 print("--------------------------------------------------")
                                 print("Ediciòn Exitosa")
                                 print("--------------------------------------------------")
                                 break
                         else:
                             print("--------------------------------------------------")
-                            print("Ediciòn Exitosa")
+                            print("Opciòn invalida")
                             print("--------------------------------------------------")
-                            break
-                            
+
                     except ValueError:
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
                         print("--------------------------------------------------")
                 break
+
+            elif opc==3:
+                break
+            else:
+                print("--------------------------------------------------")
+                print("Opciòn invalida")
+                print("--------------------------------------------------")
 
         except ValueError:
             print("--------------------------------------------------")
@@ -833,6 +846,10 @@ def buscar_pedidos():
 
                         elif opc==3:
                             break
+                        else:
+                            print("--------------------------------------------------")
+                            print("Opciòn invalida")
+                            print("--------------------------------------------------")
                     except ValueError:
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
