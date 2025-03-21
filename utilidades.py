@@ -777,10 +777,59 @@ def buscar_pedidos():
                                 break
 
                         elif opc==2:
-                            print()
+                            noti=0
+                            while True:
+                                try:  
+                                    while True:
+                                        print("Digite el codigo del producto")
+                                        cod=input("CP-")
+                                        if cod.isdigit():  
+                                            cod = f"CP-{cod}" 
+                                            break
+                                        else:
+                                            print("--------------------------------------------------")
+                                            print("Ingrese solo numeros")
+                                            print("--------------------------------------------------")
+                                    
+                                    eva=productos.get(cod,1)
+                                    if eva==1:
+                                        print("Codigo de producto inexistente, ingrese uno nuevo")
+                                    else:
+                                        break
 
+                                except ValueError:
+                                    print("--------------------------------------------------")
+                                    print("Opciòn invalida (SOLO NUMEROS)")
+                                    print("--------------------------------------------------")
 
-
+                            for i in pedidos:
+                                for j in pedidos[i]:
+                                    if j=="Detalles del pedido":
+                                        for x in pedidos[i][j]:
+                                            for h in x:
+                                                if h=="Codigo de producto":
+                                                    if x[h]==cod:
+                                                        codped=i
+                                                        noti=2
+                                                        print("--------------------------------------------------")
+                                                        print("Pedido-->",codped)
+                                                        print("--------------------------------------------------")
+                                                        for e in pedidos[codped]:
+                                                            if e=="Detalles del pedido":
+                                                                print("--------------------------------------------------")
+                                                                print("Detalles del pedido")
+                                                                for p in pedidos[codped][e]:
+                                                                    print("--------------------------------------------------")
+                                                                    for o in p:
+                                                                        print(o,"-",p[o])
+                                                            else:
+                                                                print(e,"-",pedidos[codped][e])
+                                                            
+                            if noti!=2:
+                                print("--------------------------------------------------")
+                                print("No hay pedidos con dicho codigo de producto")
+                                print("--------------------------------------------------") 
+                                break
 
                         elif opc==3:
                             break
@@ -788,7 +837,6 @@ def buscar_pedidos():
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
                         print("--------------------------------------------------")
-
 
             elif opc==3:
                 break
