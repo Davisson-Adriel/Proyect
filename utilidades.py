@@ -155,7 +155,7 @@ def ag_pedido():
         print("Digite el codigo (cedula) del cliente")
         codcliente=input("CC-")
         if codcliente.isdigit():
-            if len(codcliente)==10:
+            if len(codcliente)==10 or len(codcliente)==8:
                 codcliente = f"CC-{codcliente}"
                 break
             else:
