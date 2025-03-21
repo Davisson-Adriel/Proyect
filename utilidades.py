@@ -314,7 +314,15 @@ def visua_pedidos():
         print("Pedido-->",i)
         print("--------------------------------------------------")
         for j in pedidos[i]:
-            print(j,"-",pedidos[i][j])
+            if j=="Detalles del pedido":
+                print("--------------------------------------------------")
+                print("Detalles del pedido")
+                for x in pedidos[i][j]:
+                    print("--------------------------------------------------")
+                    for h in x:
+                        print(h,"-",x[h])
+            else:
+                print(j,"-",pedidos[i][j])
 
 def elimi_pedido():
 
