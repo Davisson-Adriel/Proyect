@@ -429,8 +429,6 @@ def edit_ped():
                             productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"])+cant
                             del pedidos[codped]["Detalles del pedido"][opc-1]
 
-                            #Voy aqui
-
 
                             while True:
                                 while True:
@@ -483,11 +481,84 @@ def edit_ped():
                                         print("--------------------------------------------------")
                                         print("ALERTA: SOLO RESTAN ", productos[codpro]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro]["Nombre"])
                                         print("--------------------------------------------------")
-
+                                        print("Ediciòn Exitosa")
+                                        print("--------------------------------------------------")
+                                        break
+                                    else:
+                                        print("--------------------------------------------------")
+                                        print("Ediciòn Exitosa")
+                                        print("--------------------------------------------------")
+                                        break
+                                break
+                            break
+                        break
                     except ValueError:
                         print("--------------------------------------------------")
                         print("Opciòn invalida (SOLO NUMEROS)")
                         print("--------------------------------------------------")
+                break
+
+            elif opc==2:
+                for count in range(len(pedidos[codped]["Detalles del pedido"])):
+                    print("--------------------------------------------------")
+                    print("SOLICITUD #",count+1)
+                    print("--------------------------------------------------")
+                    for i in pedidos[codped]["Detalles del pedido"][count]:
+                        print(i, "-", pedidos[codped]["Detalles del pedido"][count][i])
+
+                while True:
+                    try:
+                        print("--------------------------------------------------")
+                        opc=int(input("Digite el numero de Solicitud que desea editar"))
+                        print("--------------------------------------------------")
+                        
+                        if 1<=opc<=len(pedidos[codped]["Detalles del pedido"]):
+                            
+                            cant=pedidos[codped]["Detalles del pedido"][opc-1]["Cantidad"]
+                            productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"])+cant
+
+                            while True:
+                                while True:
+                                    try:
+                                        cant=int(input("Digite la cantidad a solicitar: "))
+                                        if cant>0:
+                                            break
+                                        else:
+                                            print("--------------------------------------------------")
+                                            print("Valor Invalido, intente nuevamente")
+                                            print("--------------------------------------------------")
+
+                                    except ValueError:
+                                        print("--------------------------------------------------")
+                                        print("Opciòn invalida (SOLO NUMEROS)")
+                                        print("--------------------------------------------------")
+
+                                if ((productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"])-cant)<0:
+                                    print("Imposible solicitar dicha cantidad, digite una nueva")
+                                else: 
+                                    productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]=(productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"])-cant
+                                    break
+                                
+                        pedidos[codped]["Detalles del pedido"][opc-1]["Cantidad"]=cant
+                        
+                        if productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"]<5:
+                                print("--------------------------------------------------")
+                                print("ALERTA: SOLO RESTAN ", productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Cantidad en Stock"] ," UNIDADES DE",productos[pedidos[codped]["Detalles del pedido"][opc-1]["Codigo de producto"]]["Nombre"])
+                                print("--------------------------------------------------")
+                                print("Ediciòn Exitosa")
+                                print("--------------------------------------------------")
+                                break
+                        else:
+                            print("--------------------------------------------------")
+                            print("Ediciòn Exitosa")
+                            print("--------------------------------------------------")
+                            break
+                            
+                    except ValueError:
+                        print("--------------------------------------------------")
+                        print("Opciòn invalida (SOLO NUMEROS)")
+                        print("--------------------------------------------------")
+                break
 
         except ValueError:
             print("--------------------------------------------------")
