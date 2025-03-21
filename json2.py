@@ -22,11 +22,11 @@ def cargar_datos(archivo):
         with open(archivo, "r") as file:
             datos = json.load(file)
     except Exception:
-        print("No se pudo cargar datos....")
+        print("")
         datos = None
     if archivo == "productos.json":
         productos.update(datos)
     elif archivo == "pedidos.json":
         pedidos.update(datos)
     elif archivo == "detalle.json":
-        det_pedido.uptade(datos)
+        det_pedido.update(datos)
