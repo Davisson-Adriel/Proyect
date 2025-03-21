@@ -236,13 +236,12 @@ def ag_pedido():
                     else:
                         print("Ingrese solo numeros")
 
-                eva=productos.get(codpro,1)
+                eva=productos.get(codpro)
 
-                if eva==1:
+                if eva==None:
                     print("Codigo de producto inexistente, intente nuevamente")
-                    
-                else:
-                    
+                    break
+                else:  
                     if productos[codpro]["Cantidad en Stock"] <= 0:
                         print("Producto agotado, no se puede realizar el pedido")
                         print("--------------------------------------------------")
@@ -273,7 +272,7 @@ def ag_pedido():
             
                 detalles={"Codigo de pedido":codped,"Codigo de producto":codpro,"Cantidad":cant,"Precio Unidad":productos[codpro]["Precio de venta"],"Numero de Linea":1}
                 det_pedido[codped].append(detalles)
-                pedidos[codped]={"Codigo de pedido":codped,"Cosigo de Cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido[codped]}
+                pedidos[codped]={"Codigo de pedido":codped,"Codigo de Cliente":codcliente,"Fecha":fecha,"Detalles del pedido":det_pedido[codped]}
                 if productos[codpro]["Cantidad en Stock"]<5:
                     print("--------------------------------------------------")
                     print("ALERTA: SOLO RESTAN ", productos[codpro]["Cantidad en Stock"] ," UNIDADES DE",productos[codpro]["Nombre"])
@@ -391,9 +390,18 @@ def edit_ped():
     print("--------------------------------------------------")
     print("A continuación se visualiza la información del pedido")
     print("--------------------------------------------------")
-    for j in pedidos[codped]:
-            print(j,"-",pedidos[codped][j])
 
+    for j in pedidos[codped]:
+            if j=="Detalles del pedido":
+                print("--------------------------------------------------")
+                print("Detalles del pedido")
+                for x in pedidos[codped][j]:
+                    print("--------------------------------------------------")
+                    for h in x:
+                        print(h,"-",x[h])
+            else:
+                print(j,"-",pedidos[codped][j])
+    
     while True:
         try:
             print("--------------------------------------------------")
@@ -402,7 +410,13 @@ def edit_ped():
             opc=int(input("Digite de acuerdo a su elección: "))
             print("--------------------------------------------------")
             if opc==1:
-                
+                for count in range(len(pedidos[codped]["Detalles del pedido"])):
+                    print("--------------------------------------------------")
+                    print("SOLICITUD #",count+1)
+                    print("--------------------------------------------------")
+                    for i in pedidos[codped]["Detalles del pedido"][count]:
+                        print(i, "-", pedidos[codped]["Detalles del pedido"][count][i])
+                      
                 while True:
                     
                     while True:
