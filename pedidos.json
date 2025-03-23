@@ -1,1 +1,58 @@
-{}
+{
+    "CPE-001": {
+        "Codigo de pedido": "CPE-001",
+        "Codigo de Cliente": "CC-1005280832",
+        "Fecha": "2025/3/23",
+        "Detalles del pedido": [
+            {
+                "Codigo de pedido": "CPE-001",
+                "Codigo de producto": "CP-003",
+                "Cantidad": 20,
+                "Precio Unidad": 2000.0,
+                "Numero de Linea": 1
+            },
+            {
+                "Codigo de pedido": "CPE-001",
+                "Codigo de producto": "CP-004",
+                "Cantidad": 30,
+                "Precio Unidad": 5000.0,
+                "Numero de Linea": 1
+            },
+            {
+                "Codigo de pedido": "CPE-001",
+                "Codigo de producto": "CP-001",
+                "Cantidad": 100,
+                "Precio Unidad": 500.0,
+                "Numero de Linea": 1
+            }
+        ]
+    },
+    "CPE-002": {
+        "Codigo de pedido": "CPE-002",
+        "Codigo de Cliente": "CC-64530543",
+        "Fecha": "2025/3/24",
+        "Detalles del pedido": [
+            {
+                "Codigo de pedido": "CPE-002",
+                "Codigo de producto": "CP-001",
+                "Cantidad": 250,
+                "Precio Unidad": 500.0,
+                "Numero de Linea": 1
+            },
+            {
+                "Codigo de pedido": "CPE-002",
+                "Codigo de producto": "CP-004",
+                "Cantidad": 10,
+                "Precio Unidad": 5000.0,
+                "Numero de Linea": 1
+            },
+            {
+                "Codigo de pedido": "CPE-002",
+                "Codigo de producto": "CP-003",
+                "Cantidad": 40,
+                "Precio Unidad": 2000.0,
+                "Numero de Linea": 1
+            }
+        ]
+    }
+}

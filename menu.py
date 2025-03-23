@@ -1,12 +1,13 @@
 from utilidades import*
 from json2 import*
-
+#Se ejecutan las funciones que cargar los datos de los archivos Json
 cargar_datos("productos.json")
 cargar_datos("pedidos.json")
 cargar_datos("detalles.json")
 print("--------------------------------------------------")
 print("Bienvenido a Digital Delicias Casera")
-
+#Se presenta el menú principal al Usuario, ciclos while true repetitivos en los submenus
+#Cada secuencia while true cuenta con control de errores
 while True:
     try:
         mostrar_menu()

@@ -1,1 +1,38 @@
-{}
+{
+    "CP-001": {
+        "Nombre": "Pan cascarita",
+        "Categoria": "Pan",
+        "Descripcion": "Pan cascarita crocante",
+        "Proovedor": "Agrado.SAS",
+        "Cantidad en Stock": 100,
+        "Precio de venta": 500.0,
+        "Precio de Proovedor": 100.0
+    },
+    "CP-002": {
+        "Nombre": "Pan de queso",
+        "Categoria": "Pan",
+        "Descripcion": "Pan con pedazos de queso fundido",
+        "Proovedor": "Arado Panaderia",
+        "Cantidad en Stock": 240,
+        "Precio de venta": 400.0,
+        "Precio de Proovedor": 50.0
+    },
+    "CP-003": {
+        "Nombre": "Pastel de pollo",
+        "Categoria": "Pastel",
+        "Descripcion": "Pastel en ojuelas relleno de pollo horneado",
+        "Proovedor": "Mutis",
+        "Cantidad en Stock": 280,
+        "Precio de venta": 2000.0,
+        "Precio de Proovedor": 900.0
+    },
+    "CP-004": {
+        "Nombre": "Pie de limon",
+        "Categoria": "Postre",
+        "Descripcion": "Postre de limon en tres leches",
+        "Proovedor": "Postres SAS",
+        "Cantidad en Stock": 60,
+        "Precio de venta": 5000.0,
+        "Precio de Proovedor": 2000.0
+    }
+}
