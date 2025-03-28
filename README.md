@@ -237,4 +237,4 @@ Precio de Proovedor - 100.0
 ## Estado del proyecto
 - Finalizado
 ## Link del Repositorio
-[Nombre del repositorio](https://github.com/Davisson-Adriel/Nombre-del-Repositorio)
+[Gestión inventario panaderia](https://github.com/Davisson-Adriel/Proyect)
